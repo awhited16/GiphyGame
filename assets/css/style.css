@@ -1,0 +1,38 @@
+.button-section {
+    margin: 20px 0px 20px;
+}
+
+#show-button {
+    background-color: #1e6ca8;
+    color: white;
+    border-radius: 4px;
+    padding: 2px;
+    font-size: 16px;
+    border: none;
+    margin: 3px;
+}
+
+#show-button:hover {
+    background-color: #278ad6;
+}
+
+#show-button:focus {
+    background-color: #278ad6;
+}
+
+#submit {
+    background-color: #1e6ca8;
+    color: white;
+    border-radius: 4px;
+    padding: 2px;
+    font-size: 16px;
+    border: none;
+    margin-top: 10px;
+}
+
+.card {
+    padding: 8px 8px;
+    border: none;
+    font-weight: bold;
+
+}

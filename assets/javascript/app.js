@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-    var tvShows = ["The Office", "Grey's Anatomy", "Seinfeld", "Friends", "Game of Thrones", "Stranger Things", "The Crown", "Peaky Blinders"];
+    var tvShows = ["The Office", "Grey's Anatomy", "Seinfeld", "Friends", "Game of Thrones", "Stranger Things", "The Crown", "Peaky Blinders", "Breaking Bad", "The Bachelor", "Vanderpump Rules", "Shark Tank", "Master Chef"];
 
 
 
@@ -9,7 +9,7 @@ $(document).ready(function() {
 
         for (var i = 0; i < tvShows.length; i++) {
             var a = $("<button>");
-            a.addClass("show");
+            a.addClass("show button");
             a.attr("id", "show-button");
             // Adding a data-attribute with a value of the movie at index i
             a.attr("data-name", tvShows[i]);
@@ -20,6 +20,7 @@ $(document).ready(function() {
         }
 
         $("button").on("click", function() {
+            $("#gifs-display").empty();
             console.log("button is clicked.");
             var query = $(this).attr("data-name");
             var apiKey = "6SgPxEwrrIFJNm8dMbejGmZz2cPT2Kt8";
@@ -38,8 +39,8 @@ $(document).ready(function() {
                 for (var i = 0; i < results.length; i++) {
         
                     // create GIF card and data variables
-                    var cardDiv = $("<div>");
-                    var rating = $("<p>").text("Rating: " + results[i].rating)
+                    var card = $("<div>").addClass("card");
+                    var rating = $("<p>").text("Rating: " + results[i].rating).addClass("card-text");
                     var gifImage = $("<img>");
         
                     // add GIF data to page
@@ -51,15 +52,16 @@ $(document).ready(function() {
 
                     console.log(gifImage);
   
+                    card.append(gifImage);
+                    card.append(rating);
                     
-                    cardDiv.append(rating);
-                    cardDiv.append(gifImage);
         
-                    $("#gifs-display").prepend(gifImage);
+                    $("#gifs-display").prepend(card);
   
                 }
 
                 $(".gif").on("click", function () {
+                    
                     var state = $(this).attr("data-state");
                     console.log(state);
 
