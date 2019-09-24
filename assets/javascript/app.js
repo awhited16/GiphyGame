@@ -1,9 +1,9 @@
 $(document).ready(function() {
 
+    // Create array for existing buttons
     var tvShows = ["The Office", "Grey's Anatomy", "Seinfeld", "Friends", "Game of Thrones", "Stranger Things", "The Crown", "Peaky Blinders", "Breaking Bad", "The Bachelor", "Vanderpump Rules", "Shark Tank", "Master Chef"];
 
-
-
+    // Function to display buttons in "options" section
     function displayButtons () {
         $("#options").empty();
 
@@ -11,14 +11,12 @@ $(document).ready(function() {
             var a = $("<button>");
             a.addClass("show button");
             a.attr("id", "show-button");
-            // Adding a data-attribute with a value of the movie at index i
             a.attr("data-name", tvShows[i]);
-            // Providing the button's text with a value of the movie at index i
             a.text(tvShows[i]);
-            // Adding the button to the HTML
             $("#options").append(a);
         }
 
+        // create function to call API when a button is clicked
         $("button").on("click", function() {
             $("#gifs-display").empty();
             console.log("button is clicked.");
@@ -35,7 +33,8 @@ $(document).ready(function() {
             }).then(function(response) {
                 var results = response.data;
                 console.log(results);
-        
+
+                //create for loop to add a card for each button        
                 for (var i = 0; i < results.length; i++) {
         
                     // create GIF card and data variables
@@ -56,10 +55,11 @@ $(document).ready(function() {
                     card.append(rating);
                     
         
-                    $("#gifs-display").prepend(card);
+                    $("#gifs-display").append(card);
   
                 }
 
+                // create function to pause and play GIF on click
                 $(".gif").on("click", function () {
                     
                     var state = $(this).attr("data-state");
@@ -84,13 +84,11 @@ $(document).ready(function() {
         });
     };
 
+    //create function to add input to array of tv shows
     $("#submit").on("click", function(event) {
-        // This line allows us to take advantage of the HTML "submit" property
-        // This way we can hit enter on the keyboard and it registers the search
-        // (in addition to clicks). Prevents the page from reloading on form submit.
+
         event.preventDefault();
     
-        // Empty the region associated with the articles
         clear();
 
         var newShow = $("#tvShow-input").val().trim();
@@ -99,9 +97,9 @@ $(document).ready(function() {
         tvShows.push(newShow);
         console.log(tvShows);
 
-        // calling renderButtons which handles the processing of our movie array
         displayButtons();
 
+        // create function to clear out input upon submission
         function clear() {
             $("#tvShow-input").html();
         }
