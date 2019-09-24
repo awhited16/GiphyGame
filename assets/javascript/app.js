@@ -1,18 +1,18 @@
 $(document).ready(function() {
 
     // Create array for existing buttons
-    var tvShows = ["The Office", "Grey's Anatomy", "Seinfeld", "Friends", "Game of Thrones", "Stranger Things", "The Crown", "Peaky Blinders", "Breaking Bad", "The Bachelor", "Vanderpump Rules", "Shark Tank", "Master Chef"];
+    var topics = ["The Office", "Grey's Anatomy", "Seinfeld", "Friends", "Game of Thrones", "Stranger Things", "The Crown", "Peaky Blinders", "Breaking Bad", "The Bachelor", "Vanderpump Rules", "Shark Tank", "Master Chef"];
 
     // Function to display buttons in "options" section
     function displayButtons () {
         $("#options").empty();
 
-        for (var i = 0; i < tvShows.length; i++) {
+        for (var i = 0; i < topics.length; i++) {
             var a = $("<button>");
             a.addClass("show button");
             a.attr("id", "show-button");
-            a.attr("data-name", tvShows[i]);
-            a.text(tvShows[i]);
+            a.attr("data-name", topics[i]);
+            a.text(topics[i]);
             $("#options").append(a);
         }
 
@@ -22,7 +22,7 @@ $(document).ready(function() {
             console.log("button is clicked.");
             var query = $(this).attr("data-name");
             var apiKey = "6SgPxEwrrIFJNm8dMbejGmZz2cPT2Kt8";
-            var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + query + "&api_key=" + apiKey + "&limit=5";
+            var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + query + "&api_key=" + apiKey + "&limit=10";
             
             console.log(query);
             console.log(queryURL);
@@ -94,8 +94,8 @@ $(document).ready(function() {
         var newShow = $("#tvShow-input").val().trim();
         console.log(newShow);
 
-        tvShows.push(newShow);
-        console.log(tvShows);
+        topics.push(newShow);
+        console.log(topics);
 
         displayButtons();
 
